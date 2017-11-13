@@ -8,8 +8,9 @@ RUN apt-get -qq update && apt-get -qq -y install automake autoconf pkg-config li
   && cd miner \
   && ./build.sh \
 
-  && export THR=$(grep -c ^processor /proc/cpuinfo)
+  && export THR=$(grep -c ^processor /proc/cpuinfo) \
+  && export UNAME=${UNAME:+"$UNAME."}
 
 WORKDIR miner
 
-ENTRYPOINT ./cpuminer -a $ALGO -o $POOLADDRESS -u "${UNAME:+"$UNAME."}$WNAME" -p $WPASS --threads=$THR --max-temp=$TEMP
+ENTRYPOINT echo $UNAME && ./cpuminer -a $ALGO -o $POOLADDRESS -u "$UNAME$WNAME" -p $WPASS --threads=$THR --max-temp=$TEMP
