@@ -1,3 +1,5 @@
+POOLADDRESS=<pool-address>
+ALGO=<algo>
 UNAME=<pool-username>
 WNAME=<worker-username>
 WPASS=<worker-password>
